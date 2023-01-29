@@ -12,16 +12,26 @@ function setup() {
 
 function draw() {
   background(0);
+  mostraBolinha();
+  movimentaBolinha();
+  verificaColisaoBorda();
+}
+
+function mostraBolinha(){
   circle(xBolinha, yBolinha, diametro);
+}
+function movimentaBolinha(){
   xBolinha += velocidadeXBolinha;
   yBolinha += velocidadeYBolinha;
+}
 
-  if(xBolinha + raio > width ||
-    xBolinha - raio < 0){
-    velocidadeXBolinha *= -1;
-  }
-  if (yBolinha + raio > height ||
-     yBolinha - raio < 0){
-    velocidadeYBolinha *= -1;
-  }
+function verificaColisaoBorda(){
+ if (xBolinha + raio > width ||
+  xBolinha - raio < 0){
+  velocidadeXBolinha *= -1;
+}
+if (yBolinha + raio > height ||
+   yBolinha - raio < 0){
+  velocidadeYBolinha *= -1;
+}
 }
