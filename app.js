@@ -21,6 +21,7 @@ function draw() {
   movimentaBolinha();
   verificaColisaoBorda();
   mostraRaquete();
+  movimentaMinhaRaquete();
 }
 
 function mostraBolinha(){
@@ -43,4 +44,12 @@ if (yBolinha + raio > height ||
 }
 function mostraRaquete(){
    rect(xRaquete, yRaquete, raqueteComprimento, raqueteAltura);
+}
+function movimentaMinhaRaquete(){
+  if (keyIsDown(UP_ARROW)){
+    yRaquete -= 10;
+  }
+  if (keyIsDown(DOWN_ARROW)){
+    yRaquete += 10;
+  }
 }
