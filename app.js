@@ -11,18 +11,9 @@ let yRaquete = 150;
 let raqueteComprimento = 10;
 let raqueteAltura = 90;
 
-let xBolinha = 100;
-let yBolinha = 200;
-let diametro = 22;
-let raio = diametro / 2;
-
-let velocidadeXBolinha = 3;
-let velocidadeYBolinha = 3;
-
-let xRaquete = 5;
-let yRaquete = 150;
-let raqueteComprimento = 10;
-let raqueteAltura = 90;
+let xRaqueteOponente = 585;
+let yRaqueteOponente = 150;
+let velocidadeYOponente;
 
 let colidiu = false;
 
@@ -35,10 +26,12 @@ function draw() {
   mostraBolinha();
   movimentaBolinha();
   verificaColisaoBorda();
-  mostraRaquete();
+  mostraRaquete(xRaquete, yRaquete);
   movimentaMinhaRaquete();
  // verificaColisaoRaquete();
   colisaoMinhaRaqueteBiblioteca();
+  mostraRaquete(xRaqueteOponente, yRaqueteOponente);
+  movimentaRaqueteOponente();
 }
 
 function mostraBolinha(){
@@ -59,8 +52,12 @@ if (yBolinha + raio > height ||
   velocidadeYBolinha *= -1;
 }
 }
-function mostraRaquete(){
-   rect(xRaquete, yRaquete, raqueteComprimento, raqueteAltura);
+function mostraRaquete(x,y){
+   rect(x, y, raqueteComprimento, raqueteAltura);
+}
+
+function mostraRaqueteOponente(){
+   rect(xRaqueteOponente, yRaqueteOponente, raqueteComprimento, raqueteAltura);
 }
 function movimentaMinhaRaquete(){
   if (keyIsDown(UP_ARROW)){
@@ -81,4 +78,9 @@ function colisaoMinhaRaqueteBiblioteca(){
   if (colidiu){
     velocidadeXBolinha *= -1;
   }
+}
+
+function movimentaRaqueteOponente(){
+  velocidadeYOponente = yBolinha -yRaqueteOponente -raqueteComprimento / 2 -30;
+  yRaqueteOponente += velocidadeYOponente
 }
